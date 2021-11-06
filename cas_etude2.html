@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>D3 Example</title>
+    <title>cas d'étude 2</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
     
 
@@ -50,13 +50,55 @@
   form {
 display: inline-block;
 }
+
 body {
-text-align: center;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
 }
 
+.navbar {
+  overflow: hidden;
+  background-color: #333;
+  position: fixed;
+  top: 15%;
+  width: 100%;
+}
+
+.navbar a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.navbar a:hover {
+  background: #f1f1f1;
+  color: black;
+}
+
+.navbar a.active {
+  background-color: #0489aa;
+  color: white;
+}
+
+.main {
+  padding: 16px;
+  margin-bottom: 30px;
+}
       </style>
   </head>
   <body>
+    <div class="navbar">
+      <a href="cas_etude1.html" class="active">Cas d'étude 1</a>
+      <a href="cas_etude2.html">Cas d'étude 2</a>
+    
+    </div>
+    <h1>2éme Cas d'étude :</h1>
+      <h3>Distribution des hommes et femmes fumeurs et/ou alcoolique selon la maladie et l'age</h3>
     <script>
         var data=[
   {
@@ -181,7 +223,7 @@ text-align: center;
   }
 ]
 
-            var margin = {top: 20, right: 850, bottom: 20, left: 15};
+            var margin = {top: 100, right: 850, bottom: 20, left: 15};
 
         var width = 2000 - margin.left - margin.right,
             height = 500 - margin.top - margin.bottom;
@@ -262,7 +304,7 @@ var rect = groups.selectAll("rect")
     
     if (isNaN(d.y)) d.y= 0;
     if (isNaN(d.y0)) d.y0= 0;
-    console.log(d.y0, d.y)
+  
     return y(d.y0 + d.y); })
   .attr("height", function(d) { return y(d.y0) - y(d.y0 + d.y); })
   .attr("width", x.rangeBand())
@@ -313,13 +355,18 @@ var rect = groups.selectAll("rect")
         // Prep the tooltip bits, initial display is hidden
         var tooltip = svg.append("g")
         .attr("class", "tooltip")
-        .style("display", "none");
+        .style("display", "none")
+        ;
             
         tooltip.append("rect")
         .attr("width", 30)
         .attr("height", 20)
         .attr("fill", "white")
-        .style("opacity", 0.5);
+        .style("opacity", 0.5)
+       
+        .attr("stroke", "grey")
+      .on("mouseover", mouseover)
+      .on("mouseleave", mouseleave);
 
         tooltip.append("text")
         .attr("x", 15)
@@ -328,6 +375,25 @@ var rect = groups.selectAll("rect")
         .attr("font-size", "12px")
         .attr("font-weight", "bold")
         .attr("fill", "black")
+
+  // What happens when user hover a bar
+  var mouseover = function(d) {
+    // what subgroup are we hovering?
+    var subgroupName = d3.select(this.parentNode).datum().key; // This was the tricky part
+    var subgroupValue = d.data[subgroupName];
+    // Reduce opacity of all rect to 0.2
+    d3.selectAll("rect").style("opacity", 0.2)
+    // Highlight all rects of this subgroup with opacity 0.8. It is possible to select them since they have a specific class = their name.
+    d3.selectAll("."+subgroupName)
+      .style("opacity", 1)
+    }
+
+  // When user do not hover anymore
+  var mouseleave = function(d) {
+    // Back to normal opacity: 0.8
+    d3.selectAll(".myRect")
+      .style("opacity",0.8)
+    }
 
 
           

@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>D3 Example</title>
+    <title>cas d'étude 1</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
     
 
@@ -25,38 +25,65 @@
       .y .tick line {
         stroke: #ddd;
       }
-      input[type=file]{
-      width: 100%;
-      padding: 12px 20px;
-      margin: 8px 0;
-      display: inline-block;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      box-sizing: border-box;
-    }
-            
-    input[type=submit] {
-      background-color: #4CAF50;
-      color: white;
-      padding: 12px 20px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      float: center;
-    }
-    input[type=submit]:hover {
-    background-color: #45a049;
-  }
-  form {
-display: inline-block;
-}
+     
+
 body {
-text-align: center;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+}
+
+.navbar {
+  overflow: hidden;
+  background-color: #333;
+  position: fixed;
+  top: 15%;
+  width: 100%;
+}
+
+.navbar a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.navbar a:hover {
+  background: #f1f1f1;
+  color: black;
+}
+
+.navbar a.active {
+  background-color: #0489aa;
+  color: white;
+}
+
+.main {
+  padding: 16px;
+  margin-bottom: 30px;
 }
 
       </style>
   </head>
   <body>
+    <div class="navbar">
+      <a href="cas_etude1.html" class="active">Cas d'étude 1</a>
+      <a href="cas_etude2.html">Cas d'étude 2</a>
+    
+    </div>
+    
+    <div class="main">
+      <h1>Projet InfoVis : Visualisation des données</h1>
+      <p>Dans ce projet nous allons faire une évaluation des données des maladies chroniques 
+        et du processus de  génération de visualisation
+        etudié dans le module InfoVis.</p>
+    </div>
+    
+    <h1>1ère Cas d'étude :</h1>
+    <h3>Distribution des hommes et femmes fumeurs et/ou alcoolique selon  l'age</h3>
     <script>
 
       var data=[
