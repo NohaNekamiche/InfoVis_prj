@@ -10,13 +10,12 @@
 
      
       function render(data){
-
+        console.log(data)
         d3.select("body").append("pre")
           .text(JSON.stringify(data, null, 2));
       }
 
-      d3.csv("https://raw.githubusercontent.com/haf2000/D3-StackedBarChart/main/Diagramme%201/Data_diagramme_1_maladie_age_sexe_activite.csv", render);
-
+      d3.csv("https://raw.githubusercontent.com/NohaNekamiche/InfoVis_prj/master/data_vis_homme_femme_maladie_fum_alcoo.csv", render)
     </script>
-  </body>
+ </body>
 </html>
